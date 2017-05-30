@@ -73,7 +73,9 @@ We then do another check to see if Bluetooth enabled, and then tell the user it 
 ```
 
 
-In our layout file, let's bring in a few buttons.
+In our layout file, let's bring in a few buttons and a listView from the sidebar.
+
+<img src="images/layout.png" alt="layout">
 
 The first will be to turn Bluetooth off. 
 
@@ -81,19 +83,53 @@ The second will find nearby devices, such as earbuds or watches.
 
 Our third button will let us view paired devices (ones that are already paired with the phone)
 
-Don't forget to set IDs for all three buttons.
+Don't forget to set IDs and onClick (to do when the button is clicked) for all three buttons.
+<img src="images/off.png" alt="off">
+<img src="images/devices.png" alt=devices"">
+<img src="images/paired.png" alt="paired">
 
-Then, we need to set onClick methods for all three buttons.  
+
+Now, give the listView the ID pairedDevicesListView.  
+
+<img src="images/listview.png" alt="list"> 
 
 In MainActivity, we'll create the function "turnBluetoothOff"
 
 
-
 We then need to add the permission to control Bluetooth. We will then check to see if Bluetooth is still enabled.  
 
+```
+public void turnBluetoothOff (View view) {
+
+        BA.disable();
+
+        if (BA.isEnabled()) {
+
+            Toast.makeText(getApplicationContext(), "Bluetooth could not be disabled", Toast.LENGTH_LONG).show();
+
+        } else {
+
+            Toast.makeText(getApplicationContext(), "Bluetooth turned off", Toast.LENGTH_LONG).show();
+
+        }
+
+
+    }
+```
+
+```
 Next, let's add an onClick for "findDiscoverableDevices"
 
 This will go to a different intent.  
+
+public void findDiscoverableDevices (View view) {
+
+        Intent i = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        startActivity(i);
+
+
+    }
+```
 
 Next let's add an onClick for "view Paired Devices":
 
@@ -101,7 +137,36 @@ We need a Set, which is quite similar to a List, which we will call pairedDevice
 
 We want to use an arrayAdapter to display the paired devices on our listView.  Let's create an ArrayList and call it pairedDevicesArrayList.  
 
-Let's create a for loop to find Bluetooth devices from our pairedDevices Set.  For each of the devices, we will get the name and add its name to our pairedDevicesArrayList.  
+Let's create a for loop to find Bluetooth devices from our pairedDevices Set.  For each of the devices, we will get the name and add its name to our pairedDevicesArrayList. 
+
+```
+
+public void viewPairedDevices (View view) {
+
+        Set<BluetoothDevice> pairedDevices = BA.getBondedDevices();
+
+        ListView pairedDevicesListView = (ListView) findViewById(R.id.pairedDevicesListView);
+
+        ArrayList pairedDevicesArrayList = new ArrayList();
+
+        for (BluetoothDevice bluetoothDevice : pairedDevices) {
+
+            pairedDevicesArrayList.add(bluetoothDevice.getName());
+
+        }
+
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, pairedDevicesArrayList);
+
+        pairedDevicesListView.setAdapter(arrayAdapter);
+
+    }
+```
+<br>
+<h1></h1>
+
+<p>The complete code for MainActivity.class is below:</p>
+
+```
 
     BluetoothAdapter BA;
 
@@ -175,3 +240,9 @@ Let's create a for loop to find Bluetooth devices from our pairedDevices Set.  F
         }
 
     }
+```
+
+<p>Hooray!  You've now set up a device to be connected to Bluetooth!  Check out <a href="https://www.bluetooth.com/develop-with-bluetooth">this link</a> to learn more about developing with Bluetooth.</p>
+
+
+<img src="images/thumbsup.png" alt="blue">
