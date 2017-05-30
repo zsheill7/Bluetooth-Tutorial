@@ -94,9 +94,7 @@ Don't forget to set IDs and onClick (to do when the button is clicked) for all t
 <br>
 <br>
 
-<img src="images/off.png" height="300" alt="off">
-<img src="images/devices.png"  height="300" alt=devices"">
-<img src="images/paired.png"  height="300" alt="paired">
+<img src="images/off.png" height="300" alt="off"><img src="images/devices.png" height="300" alt="devices"><img src="images/paired.png" height="300" alt="paired">
 
 <br>
 <br>
@@ -259,4 +257,4 @@ public void viewPairedDevices (View view) {
 <p>Hooray!  You've now set up a device to be connected to Bluetooth!  Check out <a href="https://www.bluetooth.com/develop-with-bluetooth">this link</a> to learn more about developing with Bluetooth.</p>
 
 
-<img src="images/thumbsup.png" alt="blue">
+<img src="images/thumbsup.png" width="400" alt="blue">
