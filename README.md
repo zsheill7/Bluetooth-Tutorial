@@ -4,13 +4,14 @@ Bluetooth is becoming increasingly popular in smart homes and smart devices. You
 
 
 <h1></h1>
+
 Let's first create a new project.  I'm going to call mine BluetoothDemo.  Unfortunately, you can't use Bluetooth on the simulator, but if you have an Android phone, you can connect it to your computer and run the code on your phone.  
 
 The first thing we will need to include is our BluetoothAdapter variable BA.  This allows us to work with Bluetooth.  
 
 First, we need to see if the user has Bluetooth turned on.  
 
-Use the .isEnabled() method to check if Bluetooth is enabled.  If it is, you can make a toast that tells the user that Bluetooth is on on their device. 
+<p>Use the .isEnabled() method to check if Bluetooth is enabled.  If it is, you can make a toast that tells the user that Bluetooth is on on their device. </p>
 
 ```
 BluetoothAdapter BA;
@@ -35,12 +36,17 @@ BluetoothAdapter BA;
 ```
 
 
-We also have to include permission for Bluetooth in our AndroidManifest.xml file.
+<p>We also have to include permission for Bluetooth in our AndroidManifest.xml file.</p>
+
+<br>
 
 ```
 <uses-permission android:name="android.permission.BLUETOOTH" />
 <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 ```
+
+<br>
+
 
 We need to create an intent to go to our Bluetooth Adapter.  We will use ACTION_REQUEST_ENABLE to enable Bluetooth.
 
@@ -84,14 +90,20 @@ The second will find nearby devices, such as earbuds or watches.
 Our third button will let us view paired devices (ones that are already paired with the phone)
 
 Don't forget to set IDs and onClick (to do when the button is clicked) for all three buttons.
-<img src="images/off.png" alt="off">
-<img src="images/devices.png" alt=devices"">
-<img src="images/paired.png" alt="paired">
 
+<br>
+<br>
+
+<img src="images/off.png" height="300" alt="off">
+<img src="images/devices.png"  height="300" alt=devices"">
+<img src="images/paired.png"  height="300" alt="paired">
+
+<br>
+<br>
 
 Now, give the listView the ID pairedDevicesListView.  
 
-<img src="images/listview.png" alt="list"> 
+<img src="images/listview.png"  height="100" alt="list"> 
 
 In MainActivity, we'll create the function "turnBluetoothOff"
 
@@ -137,7 +149,7 @@ We need a Set, which is quite similar to a List, which we will call pairedDevice
 
 We want to use an arrayAdapter to display the paired devices on our listView.  Let's create an ArrayList and call it pairedDevicesArrayList.  
 
-Let's create a for loop to find Bluetooth devices from our pairedDevices Set.  For each of the devices, we will get the name and add its name to our pairedDevicesArrayList. 
+<p>Let's create a for loop to find Bluetooth devices from our pairedDevices Set.  For each of the devices, we will get the name and add its name to our pairedDevicesArrayList. </p>
 
 ```
 
@@ -241,6 +253,8 @@ public void viewPairedDevices (View view) {
 
     }
 ```
+
+<br>
 
 <p>Hooray!  You've now set up a device to be connected to Bluetooth!  Check out <a href="https://www.bluetooth.com/develop-with-bluetooth">this link</a> to learn more about developing with Bluetooth.</p>
 
